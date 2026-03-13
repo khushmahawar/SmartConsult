@@ -1,0 +1,143 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 32px;
+  left: 30px;
+  right: 50px;
+  padding: 10px;
+  z-index: 100;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10%;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 670;
+  letter-spacing: 0.5px;
+  font-family: "Inter", sans-serif;
+}
+
+.logo span {
+   background: linear-gradient(135deg, #2563EB, #06B6D4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.nav-links li {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-links li:hover {
+  color: #00A86B;
+}
+
+
+.nav-btn {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+
+  padding: 12px 26px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #00C2FF, #3B82F6);
+  color: white;
+
+  transition: 
+    transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.3s ease,
+    background 0.4s ease;
+
+  box-shadow: 0 4px 14px rgba(0, 194, 255, 0.3);
+}
+.nav-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 194, 255, 0.5);
+}
+.nav-btn:active {
+  transform: translateY(0px) scale(0.97);
+}
+.nav-center.items {
+  display: flex;
+  height: 100vh;
+  list-style: none;
+}
+
+.navbar{
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 1024px) {
+  .navbar-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navbar-left {
+    width: 100%;
+  }
+
+  .navbar-right {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .navbar-left h1 {
+    font-size: 42px;
+  }
+}
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+
+  .menu-toggle {
+    display: block;
+  }
+  .navbar .logo {
+    font-size: 22px;
+  }
+  .nav-center {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: black;
+    display: none;
+    justify-content: center;
+    padding: 20px 0;
+  }
+
+  .nav-center.open {
+    display: flex;
+  }
+
+  .navbar > div:last-child {
+    display: block;
+  }
+  .nav-btn{
+    font-size:6px;
+    padding:10px 18px;
+  }
+
+  .navbar {
+    padding: 15px 20px;
+  }
+
+}
+html {
+  scroll-behavior: smooth;
+}

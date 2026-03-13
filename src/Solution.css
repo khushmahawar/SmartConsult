@@ -1,0 +1,170 @@
+.solutions-section {
+  padding: 140px 0;
+  background: #000000;
+  color: white;
+}
+.solution-btn{
+    font-size:18px;
+    padding:10px 18px
+  
+}
+.solutions-container {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+}
+@media (max-width:768px){
+
+.solutions-container{
+flex-direction:column;
+text-align:center;
+gap:60px;
+}
+
+}
+@media (max-width:768px){
+
+.solutions-lefth2,
+.solutions-lefth2 span{
+font-size:34px;
+}
+
+.solutions-leftspan,
+.solutions-leftspan span{
+font-size:34px;
+}
+
+}
+@media (max-width:480px){
+
+.solutions-lefth2,
+.solutions-leftspan{
+font-size:28px;
+}
+
+}
+/* LEFT SIDE */
+
+.solutions-left {
+  width: 45%;
+}
+
+.solutions-lefth2,
+.solutions-lefth2 span {
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: white;
+}
+
+.solutions-leftspan,
+.solutions-leftspan span {
+  font-size: 46px;
+  font-weight: 800;
+
+  background: linear-gradient(90deg,#00C2FF,#3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.solutions-left p {
+  color: #9ca3af;
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.solutions-points {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 35px;
+}
+
+.solutions-points li {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #d1d5db;
+  position: relative;
+  padding-left: 25px;
+}
+
+.solutions-points li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #00C2FF;
+  font-weight: bold;
+}
+
+
+
+/* RIGHT SIDE */
+
+.solutions-right {
+  width: 45%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .solutions-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .solutions-left,
+  .solutions-right {
+    width: 100%;
+  }
+
+}
+
+@media (max-width:768px){
+
+.solutions-left p{
+font-size:15px;
+margin:auto;
+}
+
+}
+@media (max-width:768px){
+
+.solutions-points{
+max-width:420px;
+margin:0 auto 30px 0;
+text-align:left;
+}
+
+}
+
+@media (max-width:768px){
+
+.solutions-right{
+width:100%;
+height:420px;
+}
+
+}
+
+@media (max-width:480px){
+
+.solutions-right{
+height:350px;
+}
+
+}
+@media (max-width:768px){
+
+.solutions-btn{
+display:flex;
+justify-content:center;
+}
+
+}

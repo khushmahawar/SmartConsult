@@ -1,0 +1,77 @@
+.glare-hover {
+  width: var(--gh-width);
+  min-height: var(--gh-height);
+  background: var(--gh-bg);
+  border-radius: var(--gh-br);
+  border: 1px solid var(--gh-border);
+  overflow: hidden;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glare-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    var(--gh-angle),
+    hsla(0, 0%, 0%, 0) 60%,
+    var(--gh-rgba) 70%,
+    hsla(0, 0%, 0%, 0),
+    hsla(0, 0%, 0%, 0) 100%
+  );
+  transition: var(--gh-duration) ease;
+  background-size:
+    var(--gh-size) var(--gh-size),
+    100% 100%;
+  background-repeat: no-repeat;
+  background-position:
+    -100% -100%,
+    0 0;
+}
+
+.glare-hover:hover {
+  cursor: pointer;
+}
+
+.glare-hover:hover::before {
+  background-position:
+    100% 100%,
+    0 0;
+}
+
+.glare-hover--play-once::before {
+  transition: none;
+}
+
+.glare-hover--play-once:hover::before {
+  transition: var(--gh-duration) ease;
+  background-position:
+    100% 100%,
+    0 0;
+}
+@media (max-width: 768px){
+
+.glare-hover{
+  width: auto;
+}
+
+.glare-hover button{
+  width: auto;
+}
+.nav-btn{
+  display: none;
+}
+}
+
+.glare-hover button{
+  padding: 14px 28px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
