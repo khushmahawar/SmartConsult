@@ -1,7 +1,9 @@
+
 .footer {
   background: #050505;
   color: white;
-  padding: 80px 0 30px 0;
+  padding: 80px 0 30px 0;;
+
 }
 
 /* Container */
@@ -84,10 +86,15 @@
 /* Mobile */
 
 @media (max-width: 600px) {
-
-  @media (max-width: 600px) {
-
-  /* Quick Links aur Solutions hide */
+  .footer-brand h2 {
+    font-size: 20px;
+  }
+  .footer-brand{
+    font-size: 10px;
+  }
+  .footer-contact p {
+    font-size: 14px;
+  }
   .footer-links {
     display: none;
   }
@@ -100,4 +107,4 @@
 
 }
 
-}
+

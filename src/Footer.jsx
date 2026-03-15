@@ -40,10 +40,10 @@ function Footer() {
         {/* Contact */}
         <div className="footer-contact">
           <h3>Contact</h3>
-          <p>Email: smartconsult221@gmail.com</p>
-          <p>Phone: +91 9826777175</p>
-          <p>WhatsApp: +91 9826777175</p>
-          <p>Instagram: @smartconsult02</p>
+          <p><a href="mailto:smartconsult221@gmail.com">Email: smartconsult221@gmail.com</a></p>
+          <p><a href="tel:+919826777175">Phone: +91 9826777175</a></p>
+          <p><a href="https://wa.me/919826777175" target="_blank" rel="noopener noreferrer">WhatsApp: +91 9826777175</a></p>
+          <p><a href="https://instagram.com/smartconsult02" target="_blank" rel="noopener noreferrer">Instagram: @smartconsult02</a></p>
         </div>
 
       </div>

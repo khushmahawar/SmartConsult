@@ -1,7 +1,10 @@
 import "./PromiseSection.css";
-import BlurText from "./components/BlurText";
+import { lazy, Suspense } from "react";
+
+const BlurText = lazy(() => import("./components/BlurText"));
 
 function PromiseSection() {
+
   const problems = [
     {
       title: "Manual Operations",
@@ -26,26 +29,31 @@ function PromiseSection() {
   ];
 
   return (
+
     <section className="promise-section">
       <div className="promise-container">
 
         <div className="promise-header">
 
-          <BlurText
-            text="Why Growth Gets Stuck"
-            delay={200}
-            animateBy="words"
-            direction="top"
-            className="promise-title"
-          />
+          <Suspense fallback={<span></span>}>
+            <BlurText
+              text="Why Growth Gets Stuck"
+              delay={200}
+              animateBy="words"
+              direction="top"
+              className="promise-title"
+            />
+          </Suspense>
 
-          <BlurText
-            text="Most growing businesses don’t lack ambition — they lack structured systems."
-            delay={100}
-            animateBy="words"
-            direction="top"
-            className="promise-intro"
-          />
+          <Suspense fallback={<span></span>}>
+            <BlurText
+              text="Most growing businesses don’t lack ambition — they lack structured systems."
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="promise-intro"
+            />
+          </Suspense>
 
         </div>
 
@@ -62,6 +70,7 @@ function PromiseSection() {
 
       </div>
     </section>
+
   );
 }
 
