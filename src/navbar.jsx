@@ -27,7 +27,7 @@ function Navbar() {
     <nav className="navbar">
 
       <div className="logo">
-        Smart<span>Consult</span>
+        Smart<span>Consults</span>
       </div>
 
       <div className={`nav-center ${menuOpen ? "open" : ""}`}>
