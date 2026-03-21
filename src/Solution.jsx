@@ -3,9 +3,9 @@ import GlareHover from "./components/GlareHover";
 import BlurText from "./components/BlurText";
 import SolutionRight from "./components/SolutionRight";
 import AnimatedContent from './components/AnimatedContent'
-
+import { useNavigate } from "react-router-dom";
 function Solutions() {
-  
+   const navigate = useNavigate(); // ✅ correct place
 const handleAnimationComplete = () => {
   console.log('All letters have animated!');
 };
@@ -77,7 +77,7 @@ const scrollToSection = (id) => {
               glareAngle={-30}
               glareSize={250}
               transitionDuration={700}
-              onClick={() => scrollToSection("contact")}
+              onClick={() => navigate("/pricing")}
             >
               <button className="solution-btn">
                 Explore Our Solutions

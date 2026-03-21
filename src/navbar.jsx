@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import GooeyNav from "./components/GooeyNav";
 import "./navbar.css";
 import GlareHover from "./components/GlareHover";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -20,7 +22,7 @@ function Navbar() {
   const items = [
     { label: "Home", id: "hero" },
     { label: "Services", id: "solution" },
-    { label: "Aboutus", id: "contact" }
+    { label: "About Us", id: "contact" },
   ];
 
   return (
@@ -45,6 +47,13 @@ function Navbar() {
           timeVariance={300}
           colors={[1, 2, 3, 1, 2, 3, 1, 4]}
         />
+      
+          <button 
+  className="pricing-btn-nav" 
+  onClick={() => navigate("/pricing")}
+>
+  View Pricing
+</button>
       </div>
 
       {/* CTA BUTTON */}

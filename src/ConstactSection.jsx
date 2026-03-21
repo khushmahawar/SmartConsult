@@ -1,10 +1,13 @@
 import "./ContactSection.css";
 import AnimatedContent from "./components/AnimatedContent";
 import GlareHover from "./components/GlareHover";
+import Pricing from "./Pricing";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function ContactSection() {
-
+  const navigate = useNavigate(); // ✅ correct place
   const [name,setName] = useState("");
   const [phone,setPhone] = useState("");
   const [business,setBusiness] = useState("");
@@ -155,27 +158,38 @@ function ContactSection() {
               value={message}
               onChange={(e)=>setMessage(e.target.value)}
             />
+{/* ✅ BUTTON GROUP */}
+  <div className="btn-group">
 
-            <button className="contact-btn" type="submit">
-  <GlareHover
-    width="auto"
-    style={{ padding: "12px 24px" ,Transform:"none",fontSize:"16px",fontWeight:"bold" }}
-    height="auto"
-    borderRadius="50px"
-    glareColor="#ffffff"
-    glareOpacity={0.25}
-    glareAngle={-30}
-    glareSize={250}
-    transitionDuration={700}
-  >
-    Start Scaling My Business
-  </GlareHover>
-</button>
-          </form>
+    <button className="contact-btn" type="submit">
+      <GlareHover
+        width="auto"
+        style={{ padding: "12px 24px", Transform: "none", fontSize: "16px", fontWeight: "bold" }}
+        height="auto"
+        borderRadius="50px"
+        glareColor="#ffffff"
+        glareOpacity={0.25}
+        glareAngle={-30}
+        glareSize={250}
+        transitionDuration={700}
+      >
+        Start Scaling My Business
+      </GlareHover>
+    </button>
 
+    <button 
+      type="button"   // 🔥 important (form submit na ho)
+      className="pricing-btn"
+      onClick={() => navigate("/pricing")}
+    >
+      View Pricing Options
+    </button>
+
+  </div>
+
+</form>
+</div>
         </div>
-
-      </div>
     </section>
   );
 }
