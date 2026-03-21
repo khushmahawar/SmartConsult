@@ -1,7 +1,7 @@
 import "./ContactSection.css";
 import AnimatedContent from "./components/AnimatedContent";
 import GlareHover from "./components/GlareHover";
-import Pricing from "./Pricing";
+import Pricing from "./pricing";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
