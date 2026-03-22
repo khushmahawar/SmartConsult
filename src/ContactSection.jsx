@@ -97,10 +97,10 @@ function ContactSection() {
             <div className="glass p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl relative overflow-hidden border-white/5">
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="relative">
-                  <User className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <User className="hidden left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <input
                     type="text"
-                    placeholder="    Your Name"
+                    placeholder="Your Name"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -109,10 +109,10 @@ function ContactSection() {
                 </div>
 
                 <div className="relative">
-                  <Phone className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <Phone className="hidden left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <input
                     type="tel"
-                    placeholder="    Mobile Number"
+                    placeholder="Mobile Number"
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
@@ -121,14 +121,14 @@ function ContactSection() {
                 </div>
 
                 <div className="relative">
-                  <Building2 className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-black-500" />
+                  <Building2 className="hidden left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-black-500" />
                   <select
                     required
                     value={business}
                     onChange={(e) => setBusiness(e.target.value)}
                     className={`${inputClasses} pl-14 appearance-none cursor-pointer`}
                   >
-                    <option value="">"       "Business Type</option>
+                    <option value="">Business Type</option>
                     <option value="ecommerce" className="text-black">E-commerce</option>
                     <option value="startup" className="text-black">SaaS / Startup</option>
                     <option value="agency" className="text-black">Agency / Service</option>
@@ -138,9 +138,9 @@ function ContactSection() {
                 </div>
 
                 <div className="relative">
-                  <MessageSquare className="absolute left-6 top-6 w-5 h-5 text-gray-500" />
+                  <MessageSquare className="hidden left-6 top-6 w-5 h-5 text-gray-500" />
                   <textarea
-                    placeholder="    What's your primary bottleneck?"
+                    placeholder="What's your primary bottleneck?"
                     rows="4"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
