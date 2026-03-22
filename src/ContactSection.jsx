@@ -100,7 +100,7 @@ function ContactSection() {
                   <User className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <input
                     type="text"
-                    placeholder="  Your Name"
+                    placeholder="    Your Name"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -112,7 +112,7 @@ function ContactSection() {
                   <Phone className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <input
                     type="tel"
-                    placeholder="  Mobile Number"
+                    placeholder="    Mobile Number"
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
@@ -128,7 +128,7 @@ function ContactSection() {
                     onChange={(e) => setBusiness(e.target.value)}
                     className={`${inputClasses} pl-14 appearance-none cursor-pointer`}
                   >
-                    <option value="  ">Business Type</option>
+                    <option value="    ">Business Type</option>
                     <option value="ecommerce" className="text-black">E-commerce</option>
                     <option value="startup" className="text-black">SaaS / Startup</option>
                     <option value="agency" className="text-black">Agency / Service</option>
@@ -140,7 +140,7 @@ function ContactSection() {
                 <div className="relative">
                   <MessageSquare className="absolute left-6 top-6 w-5 h-5 text-gray-500" />
                   <textarea
-                    placeholder="  What's your primary bottleneck?"
+                    placeholder="    What's your primary bottleneck?"
                     rows="4"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
