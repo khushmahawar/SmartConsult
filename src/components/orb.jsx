@@ -10,7 +10,7 @@ export default function Orb({
   backgroundColor = '#000000'
 }) {
   const ctnDom = useRef(null);
-
+ 
   const vert = /* glsl */ `
     precision highp float;
     attribute vec2 position;
