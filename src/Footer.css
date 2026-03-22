@@ -107,4 +107,54 @@
 
 }
 
+/* Mobile Fix */
+@media (max-width: 600px) {
 
+  /* Hide sections */
+  .hide-mobile {
+    display: none;
+  }
+
+  /* Layout fix */
+  .footer-container,
+  .container > div {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+
+  /* Brand center */
+  .footer-brand,
+  .container > div > div:first-child {
+    text-align: center;
+    margin: auto;
+  }
+
+  /* Contact center */
+  .container ul {
+    align-items: center;
+  }
+
+  /* Spacing improve */
+  footer {
+    padding: 50px 20px;
+  }
+
+}
+@media (max-width: 600px) {
+
+  .hide-mobile {
+    display: none;
+  }
+
+  /* 2 column layout fix */
+  .container > div {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px;
+  }
+
+  /* Text alignment */
+  .container > div > div {
+    text-align: left;
+  }
+
+}

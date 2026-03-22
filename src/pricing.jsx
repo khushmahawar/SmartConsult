@@ -1,9 +1,14 @@
 import React, { useMemo, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Check, ArrowRight, X, Gem, TrendingUp, Rocket } from 'lucide-react'
+import Navbar from './navbar'
+import Footer from './Footer'
 
 const packages = [
   {
     id: 'starter',
     name: 'Starter System',
+    icon: <Rocket className="w-6 h-6 text-neon-cyan" />,
     startingPrice: 9999,
     tiers: [
       {
@@ -30,7 +35,8 @@ const packages = [
       },
       {
         id: 'starter-pro',
-        name: 'Pro ⭐ Most Popular',
+        name: 'Pro',
+        isPopular: true,
         basePrice: 19999,
         features: [
           '3 Landing Pages',
@@ -52,7 +58,8 @@ const packages = [
       },
       {
         id: 'starter-advanced',
-        name: 'Advanced 🔥 Best Value',
+        name: 'Advanced',
+        isBestValue: true,
         basePrice: 29999,
         features: [
           'Complete Funnel Setup',
@@ -74,10 +81,10 @@ const packages = [
       },
     ],
   },
-
   {
     id: 'growth',
     name: 'Growth Systems',
+    icon: <TrendingUp className="w-6 h-6 text-neon-purple" />,
     startingPrice: 29999,
     tiers: [
       {
@@ -101,7 +108,8 @@ const packages = [
       },
       {
         id: 'growth-pro',
-        name: 'Pro ⭐ Most Popular',
+        name: 'Pro',
+        isPopular: true,
         basePrice: 39999,
         features: [
           '3 Funnels',
@@ -142,10 +150,10 @@ const packages = [
       },
     ],
   },
-
   {
     id: 'scale',
     name: 'Scale Optimization',
+    icon: <Gem className="w-6 h-6 text-neon-green" />,
     startingPrice: 79999,
     tiers: [
       {
@@ -160,7 +168,6 @@ const packages = [
           '25 Automations',
           '30 Days Free Customization Support',
           '6 Months Warranty & Maintenance'
-
         ],
         addOns: [
           { id: 'team', name: 'Team Workflow Automation', price: 8000 },
@@ -169,7 +176,8 @@ const packages = [
       },
       {
         id: 'scale-pro',
-        name: 'Pro 🔥 Recommended',
+        name: 'Pro',
+        isRecommended: true,
         basePrice: 99999,
         features: [
           'AI Chatbot Integration',
@@ -208,14 +216,16 @@ const packages = [
     ],
   },
 ]
+
 const money = (value) =>
-  new Intl.NumberFormat('en-IN', { 
-    style: 'currency', 
-    currency: 'INR', 
-    maximumFractionDigits: 0 
+  new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    maximumFractionDigits: 0
   }).format(value)
-export default function App() {
-  const [activePackageId, setActivePackageId] = useState(null)
+
+export default function PricingPage() {
+  const [activePackageId, setActivePackageId] = useState(packages[0].id)
   const [activeTier, setActiveTier] = useState(null)
   const [selectedAddOnIds, setSelectedAddOnIds] = useState([])
   const [isCustomizerOpen, setIsCustomizerOpen] = useState(false)
@@ -258,172 +268,277 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <header className="mb-10 text-center">
-          <p className="text-xs uppercase tracking-[0.35em] text-cyan-300/80">Pricing System</p>
-          <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-            Build your custom AI growth plan
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-300">
-            Select a package, choose your tier, then customize with add-ons and get live pricing.
-          </p>
-          {lastSaved && (
-            <p className="mx-auto mt-4 max-w-2xl rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-200">
-              {lastSaved}
-            </p>
-          )}
-        </header>
+    <div className="min-h-[100dvh] min-h-screen bg-background text-foreground overflow-x-hidden relative">
+      <Navbar />
+      <div className="pt-28 sm:pt-32 pb-16 sm:pb-20 md:pb-24">
+      {/* Background Decor */}
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[min(62.5rem,220vw)] h-[min(31.25rem,55vh)] bg-neon-cyan/5 blur-[5rem] sm:blur-[9.375rem] -z-10" />
 
-        <section>
-          <div className="grid gap-6 md:grid-cols-3">
-            {packages.map((pkg) => (
-              <article
-                key={pkg.id}
-                className={`rounded-3xl border p-6 shadow-2xl backdrop-blur-xl transition ${
-                  activePackageId === pkg.id
-                    ? 'border-cyan-400/60 bg-slate-900/80'
-                    : 'border-slate-800 bg-slate-900/50'
-                }`}
-              >
-                <h2 className="text-2xl font-semibold">{pkg.name}</h2>
-                <p className="mt-3 text-sm text-slate-300">Starting at</p>
-                <p className="mt-1 text-3xl font-bold text-cyan-300">{money(pkg.startingPrice)}</p>
-                <button
-                  className="mt-6 w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2.5 font-medium text-slate-950 transition hover:scale-[1.02]"
-                  onClick={() => {
-                    setActivePackageId(pkg.id)
-                    setActiveTier(null)
-                  }}
-                >
-                  View Plans
-                </button>
-              </article>
-            ))}
+      <div className="container mx-auto">
+        <motion.header
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-10 sm:mb-14 md:mb-16 px-1"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass mb-4 sm:mb-6">
+            <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-neon-cyan">Pricing System</span>
           </div>
-        </section>
+          <h1 className="text-[clamp(1.75rem,5.5vw,3.75rem)] md:text-6xl font-heading font-extrabold mb-4 sm:mb-6 leading-tight">
+            Build Your Custom <span className="text-neon-gradient">Growth Plan</span>
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Select a package, choose your tier, and customize with add-ons for the perfect operational system.
+          </p>
+          
+          <AnimatePresence>
+            {lastSaved && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="mt-8 inline-block px-6 py-2 rounded-full glass border-neon-green/30 text-neon-green font-medium"
+              >
+                {lastSaved}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.header>
 
-        {activePackage && (
-          <section className="mt-12">
-            <div className="mb-4 flex items-end justify-between">
-              <div>
-                <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Tiers</p>
-                <h3 className="text-2xl font-semibold">{activePackage.name}</h3>
+        {/* Package Selector */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16 md:mb-20">
+          {packages.map((pkg, idx) => (
+            <motion.div
+              key={pkg.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              onClick={() => {
+                setActivePackageId(pkg.id)
+                setActiveTier(null)
+              }}
+              className={`cursor-pointer p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-[2.5rem] transition-all duration-500 relative overflow-hidden group touch-manipulation ${
+                activePackageId === pkg.id
+                  ? 'glass border-neon-cyan/50 shadow-[0_0_50px_rgba(0,255,255,0.1)]'
+                  : 'glass-dark border-transparent hover:border-white/10'
+              }`}
+            >
+              {activePackageId === pkg.id && (
+                <motion.div
+                  layoutId="activePackage"
+                  className="absolute inset-0 bg-neon-cyan/5 -z-10"
+                />
+              )}
+              <div className="flex items-center gap-4 mb-6">
+                <div className={`p-4 rounded-2xl ${activePackageId === pkg.id ? 'bg-neon-cyan/20' : 'bg-white/5'}`}>
+                  {pkg.icon}
+                </div>
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold min-w-0">{pkg.name}</h2>
               </div>
-            </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {activePackage.tiers.map((tier) => (
-                <article key={tier.id} className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-                  <p className="text-sm uppercase tracking-[0.2em] text-slate-400">{tier.name}</p>
-                  <p className="mt-2 text-3xl font-bold">{money(tier.basePrice)}</p>
-                  <ul className="mt-4 space-y-2 text-sm text-slate-300">
-                    {tier.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-cyan-300" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <button
-                    className="mt-6 w-full rounded-xl border border-cyan-400/50 px-4 py-2.5 font-medium text-cyan-200 transition hover:bg-cyan-500/10"
-                    onClick={() => openCustomizer(tier)}
+              <p className="text-gray-400 text-sm mb-2">Starting at</p>
+              <p className={`text-2xl sm:text-3xl md:text-4xl font-extrabold break-words ${activePackageId === pkg.id ? 'text-neon-cyan' : 'text-white'}`}>
+                {money(pkg.startingPrice)}
+              </p>
+              
+              <div className={`mt-8 flex items-center gap-2 font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
+                activePackageId === pkg.id ? 'text-neon-cyan' : 'text-gray-500 group-hover:text-white'
+              }`}>
+                {activePackageId === pkg.id ? 'Current Package' : 'View Plans'} <ArrowRight className="w-4 h-4" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Tiers Grid */}
+        <AnimatePresence mode="wait">
+          {activePackage && (
+            <motion.div
+              key={activePackageId}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.5 }}
+              className="mt-12"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-10 border-b border-white/5 pb-4 sm:pb-6">
+                <div className="min-w-0 text-left">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">Recommended Tiers</h3>
+                  <p className="text-sm sm:text-base text-gray-400 mt-1 sm:mt-2">Scale your {activePackage.name} with precision.</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                {activePackage.tiers.map((tier, idx) => (
+                  <motion.div
+                    key={tier.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    className={`relative p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-[2rem] flex flex-col min-h-0 ${
+                      tier.isPopular || tier.isRecommended
+                        ? 'glass border-neon-cyan/40 bg-white/[0.04]'
+                        : 'glass border-white/5'
+                    }`}
                   >
-                    Customize Plan
-                  </button>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
+                    {(tier.isPopular || tier.isRecommended || tier.isBestValue) && (
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-neon-cyan text-black text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg shadow-neon-cyan/30">
+                        {tier.isPopular ? 'Most Popular' : tier.isRecommended ? 'Recommended' : 'Best Value'}
+                      </div>
+                    )}
+                    
+                    <div className="mb-8">
+                      <p className="text-gray-400 font-bold text-xs uppercase tracking-widest mb-2">{tier.name}</p>
+                      <h4 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-2 break-words">{money(tier.basePrice)}</h4>
+                      <p className="text-sm text-gray-500">per system implementation</p>
+                    </div>
+
+                    <ul className="space-y-4 mb-10 flex-grow">
+                      {tier.features.map((feature, fIdx) => (
+                        <li key={fIdx} className="flex items-start gap-3 group">
+                          <div className="mt-1 text-neon-cyan group-hover:scale-125 transition-transform">
+                            <Check className="w-4 h-4" />
+                          </div>
+                          <span className="text-sm text-gray-300 leading-relaxed group-hover:text-white transition-colors">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <button
+                      type="button"
+                      onClick={() => openCustomizer(tier)}
+                      className={`w-full min-h-[48px] py-3.5 sm:py-4 rounded-xl font-bold transition-all duration-300 transform active:scale-95 touch-manipulation ${
+                        tier.isPopular || tier.isRecommended
+                          ? 'bg-neon-cyan text-black hover:shadow-[0_0_30px_rgba(0,255,255,0.3)]'
+                          : 'glass text-white hover:bg-white/10'
+                      }`}
+                    >
+                      Customize Plan
+                    </button>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {isCustomizerOpen && activeTier && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-4 backdrop-blur-sm md:items-center">
-          <div className="max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl border border-slate-700 bg-slate-950 p-6">
-            <div className="mb-6 flex items-start justify-between gap-4">
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Customize plan</p>
-                <h4 className="mt-2 text-2xl font-semibold">{activeTier.name} Tier</h4>
-                <p className="mt-1 text-slate-300">Base price: {money(activeTier.basePrice)}</p>
-              </div>
-              <button
-                className="rounded-lg border border-slate-700 px-3 py-1.5 text-sm text-slate-300 hover:bg-slate-900"
-                onClick={() => setIsCustomizerOpen(false)}
-              >
-                Close
-              </button>
-            </div>
-
-            <div className="grid gap-6 lg:grid-cols-2">
-              <div>
-                <p className="mb-3 font-medium">Optional add-ons</p>
-                <div className="space-y-3">
-                  {activeTier.addOns.map((addOn) => {
-                    const checked = selectedAddOnIds.includes(addOn.id)
-                    return (
-                      <label
-                        key={addOn.id}
-                        className={`flex cursor-pointer items-center justify-between rounded-xl border p-3 transition ${
-                          checked ? 'border-cyan-400/60 bg-cyan-500/10' : 'border-slate-800 bg-slate-900/60'
-                        }`}
-                      >
-                        <div>
-                          <p className="font-medium">{addOn.name}</p>
-                          <p className="text-sm text-slate-300">{money(addOn.price)}</p>
-                        </div>
-                        <input
-                          type="checkbox"
-                          checked={checked}
-                          onChange={() => toggleAddOn(addOn.id)}
-                          className="h-4 w-4 accent-cyan-400"
-                        />
-                      </label>
-                    )
-                  })}
+      {/* Customizer Modal */}
+      <AnimatePresence>
+        {isCustomizerOpen && activeTier && (
+          <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4 md:p-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsCustomizerOpen(false)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-5xl glass-dark rounded-t-2xl sm:rounded-2xl md:rounded-[3rem] p-4 sm:p-8 md:p-12 overflow-y-auto max-h-[min(92dvh,100vh)] sm:max-h-[90vh] border border-white/10 shadow-[0_0_100px_rgba(0,0,0,0.5)]"
+            >
+              <div className="flex flex-col-reverse sm:flex-row sm:items-start sm:justify-between gap-4 mb-6 md:mb-12">
+                <div className="min-w-0 pr-2">
+                  <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-neon-cyan mb-2">Configuration Mode</p>
+                  <h4 className="text-xl sm:text-2xl md:text-3xl font-extrabold mb-2">{activeTier.name} Customizer</h4>
+                  <p className="text-sm sm:text-base text-gray-400">Add advanced modules to your core {activeTier.name} implementation.</p>
                 </div>
-              </div>
-
-              <div className="rounded-xl border border-slate-800 bg-slate-900/70 p-4">
-                <p className="text-sm uppercase tracking-[0.2em] text-slate-400">Price summary</p>
-                <div className="mt-4 space-y-3 text-sm">
-                  <div className="flex items-center justify-between">
-                    <span>Base price</span>
-                    <span>{money(basePrice)}</span>
-                  </div>
-                  <div>
-                    <p className="mb-2 text-slate-300">Selected add-ons</p>
-                    {selectedAddOns.length === 0 ? (
-                      <p className="text-slate-500">No add-ons selected</p>
-                    ) : (
-                      <ul className="space-y-1 text-slate-200">
-                        {selectedAddOns.map((addOn) => (
-                          <li key={addOn.id} className="flex items-center justify-between">
-                            <span>{addOn.name}</span>
-                            <span>+{money(addOn.price)}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                  <div className="mt-4 border-t border-slate-700 pt-3">
-                    <div className="flex items-center justify-between text-lg font-semibold">
-                      <span>Final total</span>
-                      <span className="text-cyan-300">{money(finalTotal)}</span>
-                    </div>
-                  </div>
-                </div>
-
                 <button
-                  onClick={proceed}
-                  className="mt-6 w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2.5 font-semibold text-slate-950 transition hover:scale-[1.02]"
+                  type="button"
+                  onClick={() => setIsCustomizerOpen(false)}
+                  className="self-end sm:self-start shrink-0 min-h-[44px] min-w-[44px] p-3 glass rounded-full hover:bg-white/10 transition-colors touch-manipulation"
                 >
-                  Proceed
+                  <X className="w-6 h-6" />
                 </button>
               </div>
-            </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                <div>
+                  <h5 className="text-xl font-bold mb-6 flex items-center gap-2">
+                    Available Modules <div className="h-[2px] w-12 bg-neon-cyan rounded-full" />
+                  </h5>
+                  <div className="space-y-4">
+                    {activeTier.addOns.map((addOn) => {
+                      const isSelected = selectedAddOnIds.includes(addOn.id)
+                      return (
+                        <div
+                          key={addOn.id}
+                          onClick={() => toggleAddOn(addOn.id)}
+                          className={`cursor-pointer p-4 md:p-6 rounded-2xl border transition-all duration-300 flex items-center justify-between group ${
+                            isSelected
+                              ? 'glass border-neon-cyan bg-neon-cyan/5'
+                              : 'glass-dark border-transparent hover:border-white/10'
+                          }`}
+                        >
+                          <div>
+                            <p className={`font-bold transition-colors ${isSelected ? 'text-neon-cyan' : 'text-white'}`}>
+                              {addOn.name}
+                            </p>
+                            <p className="text-sm text-gray-400 mt-1">{money(addOn.price)}</p>
+                          </div>
+                          <div className={`w-6 h-6 rounded-full border-2 transition-all duration-300 flex items-center justify-center ${
+                            isSelected ? 'bg-neon-cyan border-neon-cyan' : 'border-gray-600 group-hover:border-white'
+                          }`}>
+                            {isSelected && <Check className="w-4 h-4 text-black font-black" />}
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                <div className="glass-dark p-6 md:p-8 rounded-2xl md:rounded-[2rem] border border-white/5 h-fit relative lg:sticky lg:top-0">
+                  <h5 className="text-xl font-bold mb-6 md:mb-8">System Summary</h5>
+                  
+                  <div className="space-y-6 text-sm mb-10 pb-10 border-b border-white/5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-400">Base Implementation</span>
+                      <span className="font-bold">{money(basePrice)}</span>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <p className="text-xs uppercase tracking-widest text-gray-500 font-black">Active Modules</p>
+                      {selectedAddOns.length === 0 ? (
+                        <p className="text-gray-600 italic">No additional modules selected</p>
+                      ) : (
+                        selectedAddOns.map((addOn) => (
+                          <motion.div
+                            layout
+                            key={addOn.id}
+                            className="flex items-center justify-between"
+                          >
+                            <span className="text-gray-300">{addOn.name}</span>
+                            <span className="font-bold text-neon-cyan">+{money(addOn.price)}</span>
+                          </motion.div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between mb-10">
+                    <span className="text-lg font-bold">Total Implementation</span>
+                    <span className="text-3xl font-black text-neon-gradient">{money(finalTotal)}</span>
+                  </div>
+
+                  <button
+                    onClick={proceed}
+                    className="w-full py-5 bg-white text-black font-black rounded-2xl hover:scale-[1.02] transition-all hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] active:scale-95 flex items-center justify-center gap-3"
+                  >
+                    Confirm Selection <ArrowRight className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
+      </div>
+      <Footer />
     </div>
   )
 }

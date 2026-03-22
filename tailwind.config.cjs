@@ -6,6 +6,15 @@ module.exports = {
     "./src/**/*.{js,jsx}",
   ],
   theme: {
+  	container: {
+  		center: true,
+  		padding: {
+  			DEFAULT: '1rem',
+  			sm: '1.25rem',
+  			md: '1.5rem',
+  			lg: '2rem',
+  		},
+  	},
   	extend: {
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -15,6 +24,11 @@ module.exports = {
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+        neon: {
+          green: 'hsl(var(--neon-green))',
+          cyan: 'hsl(var(--neon-cyan))',
+          purple: 'hsl(var(--neon-purple))',
+        },
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'

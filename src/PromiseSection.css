@@ -101,9 +101,6 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-  .promise-section{
-    margin-top: -230px;
-  }
   .promise-container {
     width: 92%;
   }
