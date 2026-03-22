@@ -128,7 +128,7 @@ function ContactSection() {
                     onChange={(e) => setBusiness(e.target.value)}
                     className={`${inputClasses} pl-14 appearance-none cursor-pointer`}
                   >
-                    <option value="">    Business Type</option>
+                    <option value="">"       "Business Type</option>
                     <option value="ecommerce" className="text-black">E-commerce</option>
                     <option value="startup" className="text-black">SaaS / Startup</option>
                     <option value="agency" className="text-black">Agency / Service</option>
