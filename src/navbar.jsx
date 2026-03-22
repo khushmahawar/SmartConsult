@@ -81,7 +81,7 @@ function Navbar() {
             onClick={() => scrollToSection("hero")}
           >
             <span className="text-white">Smart</span>
-            <span className="text-neon-cyan">Consult</span>
+            <span className="text-neon-cyan">Consults</span>
           </div>
 
           {/* Desktop Nav */}

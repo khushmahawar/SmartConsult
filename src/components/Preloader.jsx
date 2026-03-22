@@ -69,7 +69,7 @@ export default function Preloader({ onComplete }) {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             className="text-neon-cyan"
           >
-            Consult
+            Consults
           </motion.span>
         </div>
 

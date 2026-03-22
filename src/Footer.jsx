@@ -46,7 +46,7 @@ function Footer() {
           <div className="lg:col-span-1">
             <div className="text-xl sm:text-2xl font-heading font-extrabold mb-6 sm:mb-8 flex items-center gap-2">
               <span className="text-white">Smart</span>
-              <span className="text-neon-cyan">Consult</span>
+              <span className="text-neon-cyan">Consults</span>
             </div>
             <p className="text-gray-400 leading-relaxed mb-8 max-w-xs">
               Transforming operational complexity into high-performance digital systems for ambitious brands.
@@ -111,7 +111,7 @@ function Footer() {
         {/* Footer Bottom */}
         <div className="pt-8 sm:pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6 text-center md:text-left">
           <p className="text-gray-500 text-xs sm:text-sm">
-            © 2026 SmartConsult. Crafted for performance.
+            © 2026 SmartConsults. Crafted for performance.
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-600">
             <button type="button" className="min-h-[44px] px-2 hover:text-white transition-colors touch-manipulation">
