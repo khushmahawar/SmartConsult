@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Sparkles, ArrowRight, Play } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import Orb from "./components/Orb";
+import Orb from "./components/orb";
 import HeroStack from "./components/HeroRight";
 import TextScramble from "./components/TextScramble";
 import Magnetic from "./components/Magnetic";
